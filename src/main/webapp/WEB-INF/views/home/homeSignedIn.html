@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="#{view.index.title}">Welcome! Bella</title>
+    <title th:text="#{view.index.title}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen" th:href="@{/resources/css/bootstrap.min.css}"/>
     <link href="../../../resources/css/core.css" rel="stylesheet" media="screen" th:href="@{/resources/css/core.css}" />
@@ -16,9 +16,22 @@
         <!-- /* The message code is returned from the @Controller */ -->
         <div th:replace="fragments/alert :: alert (type=${#strings.toLowerCase(message.type)}, message=#{${message.message}(${#authentication.name})})">&nbsp;</div>
     </th:block>
-    <p>
-        Top rated hits!
-    </p>
+    <table class="table">
+        <thead>
+        <th>Code</th>
+        <th>Description</th>
+        <th>Price</th>
+        </thead>
+        <tbody>
+        <td>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.code}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.price}"></td>
+            </tr>
+        </td>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

@@ -18,7 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import java.util.Collections;
 
 @Service
@@ -30,12 +29,6 @@ public class AccountService implements UserDetailsService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-
-	@PostConstruct
-	public void initialize() {
-		save(new Account("user", "demo", "ROLE_USER"));
-		save(new Account("admin", "admin", "ROLE_ADMIN"));
-	}
 
 	@Transactional
 	public Account save(Account account) {

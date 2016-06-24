@@ -17,8 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static java.util.function.Predicate.isEqual;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AccountServiceTest {
@@ -34,14 +33,6 @@ public class AccountServiceTest {
 
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
-
-	@Test
-	public void shouldInitializeWithTwoDemoUsers() {
-		// act
-		accountService.initialize();
-		// assert
-		verify(accountRepositoryMock, times(2)).save(any(Account.class));
-	}
 
 	@Test
 	public void shouldThrowExceptionWhenUserNotFound() {
